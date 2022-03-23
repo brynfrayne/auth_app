@@ -10,13 +10,14 @@ function App() {;
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   return (
-    <div className={isDarkMode ? 'dark-mode app' : 'app'}>
+    <div className={isDarkMode ? 'dark-mode App' : 'App'}>
       <DarkModeToggle
+      className='dark-mode__toggle'
       onChange={setIsDarkMode}
       checked={isDarkMode}
-      size={80}
+      size={40}
     />
-      <Login/>
+      <Login isDarkMode={isDarkMode}/>
       {/* <SignUp/> */}
       
     </div>

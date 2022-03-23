@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,4 +9,9 @@
 .dark-mode {
   background-color: #333333;
   color: #E0E0E0;
+}
+.dark-mode__toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }

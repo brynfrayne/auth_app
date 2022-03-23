@@ -11,7 +11,7 @@
     margin: 1rem;
     @include tablet {
         width: 29.125rem;
-        height:34rem;
+        // height:34rem;
         border: 1px solid #BDBDBD;
         border-radius: 1.25rem;
         padding: 1rem;
@@ -47,6 +47,7 @@
     &__form-subtext {
         font-size: .75rem;
         color: #828282;
+        text-align: center;
     }
 }
 .button {
@@ -58,6 +59,13 @@
     cursor: pointer;
   }
   .social-icons {
-      margin:0 .75rem;
+    //   margin:0 .75rem;
+      &__wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          width: 75%;
+          margin: 0 auto;
+      }
   }
   

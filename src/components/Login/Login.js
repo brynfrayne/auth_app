@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../../assets/devchallenges.svg';
+import darkLogo from '../../assets/devchallenges-light.svg';
 import googleLogo from '../../assets/Google.svg';
 import fbLogo from '../../assets/Facebook.svg';
 import twitterLogo from '../../assets/Twitter.svg';
@@ -10,11 +11,10 @@ import Profile from '../Profile/Profile';
 import './Login.scss';
 import Footer from '../Footer/Footer';
 
-export default function Login() {
+export default function Login({isDarkMode}) {
   
     const [registered, setRegistered] = useState();
     const [loggedIn, setLoggedIn] = useState(false);
-    const [nightMode, setNightMode] = useState();
 
     
     return (
@@ -22,7 +22,7 @@ export default function Login() {
         {loggedIn ? <Profile/>:
     <div className='login'>
         <div className='logo__wrapper'>
-            <img src={logo} alt="" className='logo'/>
+            {isDarkMode ? <img src={darkLogo} alt="" className='logo'/> : <img src={logo} alt="" className='logo'/>}
         </div>
         <h1 className='login__title'>Join thousands of learners from around the world</h1>
         <p className='login__subtitle'>
@@ -36,7 +36,7 @@ export default function Login() {
             <input type="password" className='login__form-input' placeholder='Password'/>
             <button className='button'>Start coding now</button>
             <p className='login__form-subtext'>or continue with these social profile</p>
-            <div>
+            <div className='social-icons__wrapper'>
                 <img src={googleLogo} alt="" className='social-icons'/>
                 <img src={fbLogo} alt="" className='social-icons'/>
                 <img src={twitterLogo} alt="" className='social-icons'/>

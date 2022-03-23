@@ -30,7 +30,7 @@ export default function Register() {
           <input type="password" className='login__form-input' placeholder='Password'/>
           <button className='button'>Start coding now</button>
           <p className='login__form-subtext'>or continue with these social profile</p>
-          <div>
+          <div className='social-icons__wrapper'>
               <img src={googleLogo} alt="" className='social-icons'/>
               <img src={fbLogo} alt="" className='social-icons'/>
               <img src={twitterLogo} alt="" className='social-icons'/>
