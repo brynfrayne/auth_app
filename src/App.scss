@@ -1,14 +1,11 @@
 .App {
   text-align: center;
-}
-.footer {
+  height: 100vh;
   display: flex;
-  justify-content: space-between;
-  margin: 1rem;
-  &__text {
-    color: #828282;
-    font-size: .875rem;
-    letter-spacing: -1px;
-  }
+  justify-content: center;
+  align-items: center;
 }
-
+.dark-mode {
+  background-color: #333333;
+  color: #E0E0E0;
+}

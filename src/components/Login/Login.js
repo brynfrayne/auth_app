@@ -8,6 +8,7 @@ import emailIcon from '../../assets/email.svg';
 import passwordIcon from '../../assets/lock.svg';
 import Profile from '../Profile/Profile';
 import './Login.scss';
+import Footer from '../Footer/Footer';
 
 export default function Login() {
   
@@ -43,6 +44,7 @@ export default function Login() {
             </div>
         </form>
         <p className='login__form-subtext'>Already a member? <a>Login</a></p>
+        <Footer/>
     </div>
 }
     </>

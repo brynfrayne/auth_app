@@ -1,3 +1,5 @@
+@use '../../styles/partials/mixins' as*;
+
 .logo {
     text-align: left;
     &__wrapper {
@@ -7,6 +9,13 @@
 }
 .login {
     margin: 1rem;
+    @include tablet {
+        width: 29.125rem;
+        height:34rem;
+        border: 1px solid #BDBDBD;
+        border-radius: 1.25rem;
+        padding: 1rem;
+    }
     &__title {
         text-align: left;
         font-size: 1.125rem;
