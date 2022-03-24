@@ -1,0 +1,52 @@
+.profile {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+    }
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #E0E0E0;
+        padding: 1rem;
+    }
+    &__info-heading {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 60%;
+    }
+    &__subtitle-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
+    &__subtext {
+        font-size: .875rem;
+        color: #828282;
+        text-align: left;
+        margin: 0;
+    }
+    &__thumbnail {
+        width: 2rem;
+        height: 2.25rem;
+        object-fit: contain;
+        object-position: center;
+        border-radius: .5rem;
+    }
+    &__headshot {
+        width: 4.5rem;
+        height: 4.5rem;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 1.25rem;
+    }
+}
+.button--edit {
+    background-color: white ;    
+    color: #828282;
+    padding:.5rem 1.75rem;
+    border: 1px solid #828282;
+    border-radius: .75rem;
+}

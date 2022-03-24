@@ -3,6 +3,7 @@ import { useState } from 'react';
 import DarkModeToggle from "react-dark-mode-toggle";
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
+import Profile from './components/Profile/Profile';
 
 
 function App() {;
@@ -17,8 +18,9 @@ function App() {;
       checked={isDarkMode}
       size={40}
     />
-      <Login isDarkMode={isDarkMode}/>
+      {/* <Login isDarkMode={isDarkMode}/> */}
       {/* <SignUp/> */}
+      <Profile isDarkMode={isDarkMode}/>
       
     </div>
   );
