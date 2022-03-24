@@ -4,6 +4,7 @@ import DarkModeToggle from "react-dark-mode-toggle";
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Profile from './components/Profile/Profile';
+import EditProfile from './components/EditProfile/EditProfile';
 
 
 function App() {;
@@ -20,7 +21,8 @@ function App() {;
     />
       {/* <Login isDarkMode={isDarkMode}/> */}
       {/* <SignUp/> */}
-      <Profile isDarkMode={isDarkMode}/>
+      {/* <Profile isDarkMode={isDarkMode}/> */}
+      <EditProfile/>
       
     </div>
   );

@@ -1,0 +1,40 @@
+.edit-profile {
+    &__subtext {
+        font-size: .875rem;
+    }
+    &__headshot {
+        width: 4.5rem;
+        height: 4.5rem;
+        object-fit: contain;
+        object-position: center;
+        border-radius: .75rem;
+    }
+    &__headshot-wrapper {
+        display: flex;
+        width: 55%;
+        margin-bottom: 1rem;
+    }
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    &__input {
+        padding: .25rem;
+        margin: .5rem 0;
+        border-radius: .25rem;
+        border: 1px solid #828282;
+        resize: none;
+        
+        &--textarea {
+            resize: none;
+        }
+    }
+    &__label {
+        text-align: left;
+        font-size: .75rem ;
+
+    }
+}
+.button--save {
+    width: 25%;
+}

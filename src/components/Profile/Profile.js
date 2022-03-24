@@ -6,7 +6,7 @@ import './Profile.scss';
 
 export default function Profile({isDarkMode}) {
   return (
-    <div>
+    <div className='profile'>
       <div className='profile__header'>
       {isDarkMode ? <img src={darkLogo} alt="" className='logo'/> : <img src={logo} alt="" className='logo'/>}
         <img src={headshot} alt="" className='profile__thumbnail'/>
