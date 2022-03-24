@@ -14,6 +14,11 @@
         width: 55%;
         margin-bottom: 1rem;
     }
+    &__camera-icon {
+        position: relative;
+        top: 0;
+        left: -40px;
+    }
 }
 .form {
     display: flex;
@@ -24,6 +29,7 @@
         border-radius: .25rem;
         border: 1px solid #828282;
         resize: none;
+        font-family: sans-serif;
         
         &--textarea {
             resize: none;

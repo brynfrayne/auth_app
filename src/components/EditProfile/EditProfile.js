@@ -1,5 +1,6 @@
 import React from 'react';
 import headshot from '../../assets/headshot.jpg';
+import camera from '../../assets/photo.svg';
 import './EditProfile.scss';
 
 
@@ -12,6 +13,7 @@ export default function EditProfile() {
         <form action="" className='form'>
           <div className='edit-profile__headshot-wrapper'>
             <img src={headshot} alt="" className='edit-profile__headshot'/>
+            <img src={camera} alt="" className='edit-profile__camera-icon'/>
             <p className='edit-profile__subtext'>CHANGE PHOTO</p>
           </div>
           <label htmlFor="name" className='form__label'>Name</label>
