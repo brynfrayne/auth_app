@@ -1,20 +1,43 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import headshot from '../../assets/headshot.jpg';
 import camera from '../../assets/photo.svg';
 import './EditProfile.scss';
 
 
-export default function EditProfile() {
+export default function EditProfile({isDarkMode}) {
+  
+  const [selectedFile, setSelectedFile] = useState();
+  const hiddenFileInput = useRef();
+  const handleChange = event => {
+    setSelectedFile(event.target.files[0])
+};
+
   return (
-    <div>
+    <div className='edit-profile'>
       <div>
         <h1>Change Info</h1>
         <p>Changes will be reflected to every services</p>
         <form action="" className='form'>
           <div className='edit-profile__headshot-wrapper'>
-            <img src={headshot} alt="" className='edit-profile__headshot'/>
-            <img src={camera} alt="" className='edit-profile__camera-icon'/>
-            <p className='edit-profile__subtext'>CHANGE PHOTO</p>
+            <button className='button--change-photo'>
+              <img src={headshot} alt="" className='edit-profile__headshot'/>
+              <img src={camera} alt="" className='edit-profile__camera-icon'/>
+            </button>
+            {/* <p className='edit-profile__subtext'> */}
+            <button className='button--change-photo'>
+              CHANGE PHOTO
+            </button>
+            {/* </p> */}
+            <input
+                type="file"
+                name="photo"
+                ref={hiddenFileInput}
+                multiple={false}
+                accept="image/jpeg, image/jpg, image/png"
+                onChange={handleChange}
+                style={{display: 'none'}} 
+                className='simple-file-upload'
+            />   
           </div>
           <label htmlFor="name" className='form__label'>Name</label>
           <input type="text" placeholder='Enter your name..' className='form__input'/>

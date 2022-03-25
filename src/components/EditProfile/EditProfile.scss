@@ -1,6 +1,17 @@
+@use '../../styles/partials/mixins' as*;
+
 .edit-profile {
+    margin: 1rem;
+    width: 100%;
+    @include tablet {
+        width: 29.125rem;
+        // height:34rem;
+        border: 1px solid #BDBDBD;
+        border-radius: 1.25rem;
+        padding: 1rem;
+    }
     &__subtext {
-        font-size: .875rem;
+        font-size: .75rem;
     }
     &__headshot {
         width: 4.5rem;
@@ -11,13 +22,14 @@
     }
     &__headshot-wrapper {
         display: flex;
+        align-items: center;
         width: 55%;
         margin-bottom: 1rem;
     }
     &__camera-icon {
-        position: relative;
-        top: 0;
-        left: -40px;
+        position: absolute;
+        top: 28px;
+        right: 30px;
     }
 }
 .form {
@@ -30,6 +42,8 @@
         border: 1px solid #828282;
         resize: none;
         font-family: sans-serif;
+        font-size: .75rem;
+        
         
         &--textarea {
             resize: none;
@@ -43,4 +57,10 @@
 }
 .button--save {
     width: 25%;
+}
+.button--change-photo {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
 }

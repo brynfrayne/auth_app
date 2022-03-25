@@ -2,6 +2,10 @@
 @use './styles/partials/variables' as *;
 @use './styles/partials/global' as *;
 
+h1,h2,p {
+  letter-spacing: -.425px;
+}
+
 .App {
   text-align: center;
   height: 100vh;

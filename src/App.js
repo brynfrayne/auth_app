@@ -5,6 +5,7 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/EditProfile/EditProfile';
+import Header from './components/Header/Header';
 
 
 function App() {;
@@ -22,7 +23,8 @@ function App() {;
       {/* <Login isDarkMode={isDarkMode}/> */}
       {/* <SignUp/> */}
       {/* <Profile isDarkMode={isDarkMode}/> */}
-      <EditProfile/>
+      {/* <EditProfile isDarkMode={isDarkMode}/> */}
+      <Header isDarkMode={isDarkMode}/>
       
     </div>
   );
