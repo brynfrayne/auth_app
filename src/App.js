@@ -6,6 +6,7 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/EditProfile/EditProfile';
+import Footer from './components/Footer/Footer';
 
 
 function App() {;
@@ -16,11 +17,12 @@ function App() {;
     <BrowserRouter>
       <div className={isDarkMode ? 'dark-mode App' : 'App'}>
       <Routes>
-        <Route path='/' element={<Login isDarkMode={isDarkMode}/>} />
-        <Route path='/login' element={<SignUp/>} />  
+        <Route path='/' element={<SignUp isDarkMode={isDarkMode}/>} />
+        <Route path='/login' element={<Login isDarkMode={isDarkMode}/>} />  
         <Route exact path='/profile' element={<Profile isDarkMode={isDarkMode}/>} />  
         <Route path='/profile/edit' element={<EditProfile isDarkMode={isDarkMode}/>} />  
       </Routes>
+        <Footer/>
         <DarkModeToggle
         className='dark-mode__toggle'
         onChange={setIsDarkMode}
