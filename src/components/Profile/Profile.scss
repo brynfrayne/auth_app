@@ -2,23 +2,29 @@
 
 .profile {
     margin: 1rem;
-    @include tablet {
-        width: 29.125rem;
-        // height:34rem;
-        border: 1px solid #BDBDBD;
-        border-radius: 1.25rem;
-        padding: 1rem;
+    
+    &__card {
+        @include tablet {
+            width: 29.125rem;
+            // height:34rem;
+            border: 1px solid #BDBDBD;
+            border-radius: 1.25rem;
+            // padding: 1rem;
+        }
     }
     &__header {
         display: flex;
         justify-content: space-between;
         padding: 0 1rem;
+        @include tablet {
+            display: none;
+        }
     }
     &__info {
         display: flex;
         justify-content: space-between;
-        border-bottom: 1px solid #E0E0E0;
-        padding: 1rem;
+        border-top: 1px solid #E0E0E0;
+        padding: .5rem 1rem;
     }
     &__info-heading {
         display: flex;
@@ -37,6 +43,9 @@
         color: #828282;
         text-align: left;
         margin: 0;
+    }
+    &__title-wrapper {
+        text-align: center;
     }
     &__thumbnail {
         width: 2rem;
@@ -59,4 +68,5 @@
     padding:.5rem 1.75rem;
     border: 1px solid #828282;
     border-radius: .75rem;
+    text-decoration: none;
 }
