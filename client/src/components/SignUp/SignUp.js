@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/devchallenges.svg';
 import darkLogo from '../../assets/devchallenges-light.svg';
 import googleLogo from '../../assets/Google.svg';
@@ -10,14 +10,40 @@ import emailIcon from '../../assets/email.svg';
 import passwordIcon from '../../assets/lock.svg';
 import Profile from '../Profile/Profile';
 import './SignUp.scss';
-import Footer from '../Footer/Footer';
+import axios from  'axios';
 
 export default function SignUp({isDarkMode}) {
   
-    const [registered, setRegistered] = useState();
     const [loggedIn, setLoggedIn] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false);
+    const navigate = useNavigate();
 
-    
+    const handleSubmit = (event) => {
+       
+        event.preventDefault();
+        setIsSubmit(true);
+        
+        axios.post("http://localhost:8000/signup", {
+            email: event.target.elements.email.value,
+            password: event.target.elements.password.value
+        })
+        // .then(() => {
+        //     // navigate('/profile')
+            
+        //     // event.target.reset();
+        // })
+        .catch((error)=>{
+            console.error(error)
+        })
+    };
+
+    useEffect(()=>{
+        console.log(isSubmit)
+        if (isSubmit) {
+            navigate('/profile');
+        }
+    });
+
     return (
         <>
         {loggedIn ? <Profile/>:
@@ -30,11 +56,11 @@ export default function SignUp({isDarkMode}) {
             Master web development by making real-life projects. 
             There are multiple paths for you to choose
         </p>
-        <form action="post" className='login__form'>
+        <form className='login__form' onSubmit={handleSubmit}>
             <img src={emailIcon} alt=""  className='login__form-input-icon'/>
-            <input type="email" className='login__form-input' placeholder='Email'/>
+            <input id='email' name='email' type="email" className='login__form-input' placeholder='Email'/>
             <img src={passwordIcon} alt=""  className='login__form-input-icon'/>
-            <input type="password" className='login__form-input' placeholder='Password'/>
+            <input id='password' name='password' type="password" className='login__form-input' placeholder='Password'/>
             <button className='button'>Start coding now</button>
             <p className='login__form-subtext'>or continue with these social profile</p>
             <div className='social-icons__wrapper'>
