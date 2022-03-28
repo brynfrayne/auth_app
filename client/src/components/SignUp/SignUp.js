@@ -27,7 +27,10 @@ export default function SignUp({isDarkMode}) {
         
         axios.post("http://localhost:8000/signup", {
             email: event.target.elements.email.value,
-            password: event.target.elements.password.value
+            password: event.target.elements.password.value,
+            name: "Greetings, what is thy name?",
+            bio: "Please enter some fun words about yourself here!",
+            // image: ''
         })
         // .then(() => {
         //     // navigate('/profile')

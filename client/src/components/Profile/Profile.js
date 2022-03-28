@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../assets/devchallenges.svg';
@@ -9,17 +9,26 @@ import Header from '../Header/Header';
 
 export default function Profile({isDarkMode}) {
 
+const [profile, setProfile] = useState();
 const { email } = useParams();
 console.log(email)
 
-  // useEffect({
-    axios.get(`http://localhost:8000/${email}`)
+const getUser = () => { 
+  axios.get(`http://localhost:8000/${email}`)
     .then((response)=> {
       console.log(response.data)
+      setProfile(response.data)
     })
-  // })
+  };
+useEffect(() => {
+  getUser()
+}, []);
 
-  return (
+console.log(profile)
+ if (!profile) {
+   return <div className="loader"></div>
+ } 
+   return (
     <div>
       <Header isDarkMode={isDarkMode} />
       <div className='profile'>      
@@ -51,19 +60,19 @@ console.log(email)
           </div>
           <div className='profile__info'>
             <p>NAME</p>
-            <p>Xanthe Neal</p>
+            <p>{profile.name}</p>
           </div>
           <div className='profile__info'>
             <p>BIO</p>
-            <p>I am a software developer...</p>
+            <p>{profile.bio}</p>
           </div>
           <div className='profile__info'>
             <p>EMAIL</p>
-            <p>xanthe.neal@gmail.com</p>
+            <p>{profile.email}</p>
           </div>
           <div className='profile__info'>
             <p>PASSWORD</p>
-            <p>***********</p>
+            <p>{profile.password}</p>
           </div>
 
         </section>
