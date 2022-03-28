@@ -22,6 +22,9 @@ export default function EditProfile({isDarkMode}) {
       email: event.target.elements.email.value,
       password: event.target.elements.password.value
     })
+    .then((response) => {
+      console.log(response.data)
+    })
     
 
   }

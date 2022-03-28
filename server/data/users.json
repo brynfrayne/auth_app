@@ -1,0 +1,38 @@
+[
+    {
+        "email": "abc@yahoo.ca",
+        "password": "asdf",
+        "name": "Bryn Frayne",
+        "bio": "Hey there I like to code it UP!",
+        "phone": "2502164842",
+        "image": ""
+    },
+    {
+        "email": "abc@yahoo.ca",
+        "password": "asdf"
+    },
+    {
+        "email": "abc@yahoo.ca",
+        "password": "1234"
+    },
+    {
+        "email": "fgdfg@dfsd.com",
+        "password": "asdf"
+    },
+    {
+        "email": "brynfrayne@gmail.com",
+        "password": "fgfg"
+    },
+    {
+        "email": "fgdfg@dfsd.com",
+        "password": "dfdfdsga"
+    },
+    {
+        "email": "fgdfg@dfsd.com",
+        "password": "jkl"
+    },
+    {
+        "email": "abc@yahoo.ca",
+        "password": "123"
+    }
+]

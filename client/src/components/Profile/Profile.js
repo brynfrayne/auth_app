@@ -1,5 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import axios from 'axios';
 import logo from '../../assets/devchallenges.svg';
 import darkLogo from '../../assets/devchallenges-light.svg';
 import headshot from '../../assets/headshot.jpg';
@@ -7,6 +8,17 @@ import './Profile.scss';
 import Header from '../Header/Header';
 
 export default function Profile({isDarkMode}) {
+
+const { email } = useParams();
+console.log(email)
+
+  // useEffect({
+    axios.get(`http://localhost:8000/${email}`)
+    .then((response)=> {
+      console.log(response.data)
+    })
+  // })
+
   return (
     <div>
       <Header isDarkMode={isDarkMode} />

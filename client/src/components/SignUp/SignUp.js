@@ -16,12 +16,14 @@ export default function SignUp({isDarkMode}) {
   
     const [loggedIn, setLoggedIn] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
+    const [email, setEmail] = useState();
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
        
         event.preventDefault();
         setIsSubmit(true);
+        setEmail(event.target.elements.email.value);
         
         axios.post("http://localhost:8000/signup", {
             email: event.target.elements.email.value,
@@ -40,7 +42,8 @@ export default function SignUp({isDarkMode}) {
     useEffect(()=>{
         console.log(isSubmit)
         if (isSubmit) {
-            navigate('/profile');
+            console.log(email)
+            navigate(`/profile/${email}`);
         }
     });
 
