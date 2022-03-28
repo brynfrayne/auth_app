@@ -15,7 +15,9 @@ app.post('/signup', (req, res) => {
 }) 
 
 // update new user
-app.put
+app.put('/editprofile', (req, res) => {
+    console.log(req.body)
+})
 
 // get user info
 app.get
