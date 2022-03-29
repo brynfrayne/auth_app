@@ -8,31 +8,15 @@
         "image": ""
     },
     {
-        "email": "abc@yahoo.ca",
-        "password": "asdf"
-    },
-    {
-        "email": "abc@yahoo.ca",
-        "password": "1234"
-    },
-    {
+        "name": "Greetings, what is thy name?",
+        "bio": "Please enter some fun words about yourself here!",
         "email": "fgdfg@dfsd.com",
-        "password": "asdf"
+        "password": {}
     },
     {
-        "email": "brynfrayne@gmail.com",
-        "password": "fgfg"
-    },
-    {
-        "email": "fgdfg@dfsd.com",
-        "password": "dfdfdsga"
-    },
-    {
-        "email": "fgdfg@dfsd.com",
-        "password": "jkl"
-    },
-    {
+        "name": "Greetings, what is thy name?",
+        "bio": "Please enter some fun words about yourself here!",
         "email": "abc@yahoo.ca",
-        "password": "123"
+        "password": "$2b$10$Rqd9nWF80znew4n03oBLXu2rcwGS.wq98PFs1ZEl2xGD0mMz3otIi"
     }
 ]

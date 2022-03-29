@@ -30,6 +30,7 @@ export default function SignUp({isDarkMode}) {
             password: event.target.elements.password.value,
             name: "Greetings, what is thy name?",
             bio: "Please enter some fun words about yourself here!",
+            phone: 123-456-7890
             // image: ''
         })
         // .then(() => {

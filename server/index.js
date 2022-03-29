@@ -3,6 +3,8 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const cors = require('cors');
 const fs = require('fs');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const readUsers = () => {
     const data = fs.readFileSync('./data/users.json');
@@ -23,12 +25,13 @@ app.use(express.urlencoded());
 // create new user
 app.post('/signup', (req, res) => {
     console.log(req.body);
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     const newUser = {
         name: req.body.name,
         bio: req.body.bio,
         phone: req.body.phone,
         email: req.body.email,
-        password: req.body.password
+        password: hashedPassword
     }
     const users = readUsers();
     users.push(newUser);
