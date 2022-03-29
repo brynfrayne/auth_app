@@ -7,6 +7,7 @@ import headshot from '../../assets/headshot.jpg';
 import './Profile.scss';
 import Header from '../Header/Header';
 
+
 export default function Profile({isDarkMode}) {
 
 const [profile, setProfile] = useState();
@@ -48,7 +49,10 @@ console.log(profile)
             </div>
             <div>
               {/* <button className='button--edit'> */}
-              <NavLink to={'/profile/edit'} className='button--edit'>
+              <NavLink to={`/profile/edit/${profile.id}`}
+                state={{id:profile.id}} 
+                className='button--edit'
+                >
                 Edit
               </NavLink>
               {/* </button> */}
@@ -72,7 +76,7 @@ console.log(profile)
           </div>
           <div className='profile__info'>
             <p>PASSWORD</p>
-            <p>{profile.password}</p>
+            <p>*********</p>
           </div>
 
         </section>

@@ -11,6 +11,7 @@ import passwordIcon from '../../assets/lock.svg';
 import Profile from '../Profile/Profile';
 import './SignUp.scss';
 import axios from  'axios';
+import uniqid from 'uniqid';
 
 export default function SignUp({isDarkMode}) {
   
@@ -30,7 +31,8 @@ export default function SignUp({isDarkMode}) {
             password: event.target.elements.password.value,
             name: "Greetings, what is thy name?",
             bio: "Please enter some fun words about yourself here!",
-            phone: 123-456-7890
+            phone: '123-456-7890',
+            id: uniqid()
             // image: ''
         })
         // .then(() => {
@@ -52,8 +54,8 @@ export default function SignUp({isDarkMode}) {
     });
 
     return (
-        <>
-        {loggedIn ? <Profile/>:
+        // <>
+        // {loggedIn ? <Profile/>:
     <div className='login'>
         <div className='logo__wrapper'>
             {isDarkMode ? <img src={darkLogo} alt="" className='logo'/> : <img src={logo} alt="" className='logo'/>}
@@ -79,7 +81,7 @@ export default function SignUp({isDarkMode}) {
         </form>
         <p className='login__form-subtext'>Already a member? <NavLink to='/login'>Login</NavLink></p>
     </div>
-}
-    </>
+// }
+    // </>
   )
 }

@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import headshot from '../../assets/headshot.jpg';
 import camera from '../../assets/photo.svg';
@@ -20,7 +21,8 @@ export default function EditProfile({isDarkMode}) {
       bio: event.target.elements.bio.value,
       phone: event.target.elements.phone.value,
       email: event.target.elements.email.value,
-      password: event.target.elements.password.value
+      password: event.target.elements.password.value,
+      id: location.state.id
     })
     .then((response) => {
       console.log(response.data)
@@ -28,6 +30,9 @@ export default function EditProfile({isDarkMode}) {
     
 
   }
+  const location = useLocation()
+  
+  console.log(location.state.id)
 
   const handleChange = event => {
     setSelectedFile(event.target.files[0])

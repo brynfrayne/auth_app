@@ -5,6 +5,7 @@ const cors = require('cors');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const uniqid = require('uniqid');
 
 const readUsers = () => {
     const data = fs.readFileSync('./data/users.json');
@@ -31,7 +32,8 @@ app.post('/signup', (req, res) => {
         bio: req.body.bio,
         phone: req.body.phone,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
+        id:uniqid()
     }
     const users = readUsers();
     users.push(newUser);
@@ -42,19 +44,20 @@ app.post('/signup', (req, res) => {
 
 // update user
 app.put('/editprofile', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     const userData = readUsers();
-    const email = req.body.email;
-    const foundUser = userData.find((user) => email === user.email);
+    const id = req.body.id;
+    const foundUser = userData.find((user) => id === user.id);
     console.log(foundUser)
     foundUser['image'] = req.body.image;
     foundUser['name'] = req.body.name;
     foundUser['bio'] = req.body.bio;
     foundUser['phone'] = req.body.phone;
     foundUser['email'] = req.body.email;
-    foundUser['password'] = req.body.password;
+    foundUser['password'] = bcrypt.hashSync(req.body.password, 10);
     fs.writeFileSync('./data/users.json', JSON.stringify(userData));
     res.status(200).json(foundUser);
+    console.log(foundUser)
 })
 
 // get user info
