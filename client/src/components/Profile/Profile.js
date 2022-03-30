@@ -11,11 +11,11 @@ import Header from '../Header/Header';
 export default function Profile({isDarkMode}) {
 
 const [profile, setProfile] = useState();
-const { email } = useParams();
-console.log(email)
+const { id } = useParams();
+console.log(id)
 
 const getUser = () => { 
-  axios.get(`http://localhost:8000/${email}`)
+  axios.get(`http://localhost:8000/${id}`)
     .then((response)=> {
       console.log(response.data)
       setProfile(response.data)

@@ -19,7 +19,7 @@ function App() {;
       <Routes>
         <Route path='/' element={<SignUp isDarkMode={isDarkMode}/>} />
         <Route path='/login' element={<Login isDarkMode={isDarkMode}/>} />  
-        <Route exact path='/profile/:email' element={<Profile isDarkMode={isDarkMode}/>} />  
+        <Route exact path='/profile/:id' element={<Profile isDarkMode={isDarkMode}/>} />  
         <Route path='/profile/edit/:id' element={<EditProfile isDarkMode={isDarkMode}/>} />  
       </Routes>
         <Footer/>

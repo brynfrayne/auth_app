@@ -25,7 +25,7 @@ app.use(express.urlencoded());
 
 // create new user
 app.post('/signup', (req, res) => {
-    console.log(req.body);
+    console.log(req.body.id);
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     const newUser = {
         name: req.body.name,
@@ -33,8 +33,9 @@ app.post('/signup', (req, res) => {
         phone: req.body.phone,
         email: req.body.email,
         password: hashedPassword,
-        id:uniqid()
+        id:req.body.id
     }
+    console.log(newUser)
     const users = readUsers();
     users.push(newUser);
     fs.writeFileSync('./data/users.json', JSON.stringify(users));
@@ -61,12 +62,13 @@ app.put('/editprofile', (req, res) => {
 })
 
 // get user info
-app.get('/:email', (req, res) => {
-    const email = req.params.email;
+app.get('/:id', (req, res) => {
+    const id = req.params.id;
+    console.log(id)
     // read json file 
     const userData = readUsers();
     // find the specific user im wanting 
-    const foundUser = userData.find((user) => email === user.email);
+    const foundUser = userData.find((user) => id === user.id);
     console.log(foundUser)
     // send that to the client
     res.status(200).json(foundUser);

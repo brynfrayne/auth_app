@@ -18,6 +18,7 @@ export default function SignUp({isDarkMode}) {
     const [loggedIn, setLoggedIn] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
     const [email, setEmail] = useState();
+    const [id, setId] = useState(uniqid());
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
@@ -26,15 +27,17 @@ export default function SignUp({isDarkMode}) {
         setIsSubmit(true);
         setEmail(event.target.elements.email.value);
         
+        
         axios.post("http://localhost:8000/signup", {
             email: event.target.elements.email.value,
             password: event.target.elements.password.value,
             name: "Greetings, what is thy name?",
             bio: "Please enter some fun words about yourself here!",
             phone: '123-456-7890',
-            id: uniqid()
+            id: id
             // image: ''
         })
+        
         // .then(() => {
         //     // navigate('/profile')
             
@@ -48,8 +51,8 @@ export default function SignUp({isDarkMode}) {
     useEffect(()=>{
         console.log(isSubmit)
         if (isSubmit) {
-            console.log(email)
-            navigate(`/profile/${email}`);
+            console.log(id)
+            navigate(`/profile/${id}`);
         }
     });
 

@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import headshot from '../../assets/headshot.jpg';
 import camera from '../../assets/photo.svg';
@@ -10,10 +10,14 @@ import axios from 'axios';
 export default function EditProfile({isDarkMode}) {
   
   const [selectedFile, setSelectedFile] = useState();
+  const [isSubmit, setIsSubmit] = useState(false);
+  const { id } = useParams();
+  const navigate = useNavigate();
   const hiddenFileInput = useRef();
 
   const handleSubmit = event => {
     event.preventDefault();
+    setIsSubmit(true);
 
     axios.put("http://localhost:8000/editprofile", {
       image: event.target.elements.photo.value,
@@ -26,6 +30,11 @@ export default function EditProfile({isDarkMode}) {
     })
     .then((response) => {
       console.log(response.data)
+
+      
+      // !!! After saving the changes I want to go back to the profile
+      // but i need to change the url parameters from email to id as I could
+      // change the email in the edit section and break the code !!!!!
     })
     
 
@@ -37,6 +46,14 @@ export default function EditProfile({isDarkMode}) {
   const handleChange = event => {
     setSelectedFile(event.target.files[0])
 };
+
+useEffect(()=>{
+  console.log(isSubmit)
+  if (isSubmit) {
+      console.log(id)
+      navigate(`/profile/${id}`);
+  }
+});
 
   return (
     <div>
