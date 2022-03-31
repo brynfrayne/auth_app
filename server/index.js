@@ -74,6 +74,30 @@ app.get('/:id', (req, res) => {
     res.status(200).json(foundUser);
 })
 
+// login user 
+app.post('/login', (req, res)=> {
+    const { email, password } = req.body;
+
+    //if any fields are missing, return
+    if(!email || !password) {
+        return res.status(400).send("Please enter the required fields.");
+    }
+    const userData = readUsers();
+    const foundUser = userData.find((user) => email === user.email);
+    console.log(foundUser);
+
+    const isPasswordCorrect = bcrypt.compareSync(password, foundUser.password);
+
+    if(!isPasswordCorrect) return res.status(400).send("Invalid password");
+
+    const token = jwt.sign(
+        {id: foundUser.id, email: foundUser.email},
+        process.env.TOKEN_SECRET,
+        { expiresIn: "24h"}
+    );
+    res.json({ token });
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })

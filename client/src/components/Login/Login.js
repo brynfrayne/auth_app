@@ -10,6 +10,7 @@ import emailIcon from '../../assets/email.svg';
 import passwordIcon from '../../assets/lock.svg';
 import Profile from '../Profile/Profile';
 import './Login.scss';
+import axios from 'axios';
 
 
 export default function Login({isDarkMode}) {
@@ -17,6 +18,18 @@ export default function Login({isDarkMode}) {
   const [registered, setRegistered] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
   const [nightMode, setNightMode] = useState();
+
+  const handleSubmit = (event) => {
+
+
+    axios.post('http://localhost:8000/login', {
+      email: event.target.elements.email.value,
+      password: event.target.elements.password.value
+    })
+    .catch((error)=>{
+      console.error(error)
+  })
+  }
 
   return (
       <>
@@ -26,11 +39,11 @@ export default function Login({isDarkMode}) {
       {isDarkMode ? <img src={darkLogo} alt="" className='logo'/> : <img src={logo} alt="" className='logo'/>}
       </div>
       <h1 className='login__title'>Login</h1>
-      <form action="post" className='login__form'>
+      <form className='login__form' onSubmit={handleSubmit}>
           <img src={emailIcon} alt=""  className='login__form-input-icon'/>
-          <input type="email" className='login__form-input' placeholder='Email'/>
+          <input id="email" type="email" className='login__form-input' placeholder='Email'/>
           <img src={passwordIcon} alt=""  className='login__form-input-icon'/>
-          <input type="password" className='login__form-input' placeholder='Password'/>
+          <input id="password" type="password" className='login__form-input' placeholder='Password'/>
           <button className='button'>Login</button>
           <p className='login__form-subtext'>or continue with these social profile</p>
           <div className='social-icons__wrapper'>

@@ -31,10 +31,6 @@ export default function EditProfile({isDarkMode}) {
     .then((response) => {
       console.log(response.data)
 
-      
-      // !!! After saving the changes I want to go back to the profile
-      // but i need to change the url parameters from email to id as I could
-      // change the email in the edit section and break the code !!!!!
     })
     
 

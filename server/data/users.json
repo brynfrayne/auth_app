@@ -1,1 +1,61 @@
-[{"name":"Greetings, what is thy name?","bio":"Please enter some fun words about yourself here!","phone":"123-456-7890","email":"fgdfg@dfsd.com","password":"$2b$10$ZnbrW2kKfxhngZMMV5EPceya6arGu0bFxI8n4IcA2O/Yo4WhZjdmW"},{"name":"Greetings, what is thy name?","bio":"Please enter some fun words about yourself here!","phone":"123-456-7890","email":"brynfrayne@gmail.com","password":"$2b$10$yBxkyllsvxxhpSFc8iXL9OKXNHUjhaVj7B889vFA8QSoWsnBtgN5u"},{"name":"Greetings, what is thy name?","bio":"Please enter some fun words about yourself here!","phone":"123-456-7890","email":"abc@yahoo.ca","password":"$2b$10$guru5WvAEs8.plLxc9nTvegbCLx18KCGwzlDDBWs.5M36hF5.kV6."},{"name":"Greetings, what is thy name?","bio":"Please enter some fun words about yourself here!","phone":"123-456-7890","email":"abc@yahoo.ca","password":"$2b$10$YF/uynGOw45zT1TJJzPTfeV9sIdrn/Hc3VvEFavLuUjiyfHhfUgDa"},{"name":"Greetings, what is thy name?","bio":"Please enter some fun words about yourself here!","phone":"123-456-7890","email":"abc@yahoo.ca","password":"$2b$10$XXv2BH4CzYzVER5MDperyO5xKKOA6Gw1CCM2SZTtWQh1tCQasz9DO"},{"name":"Greetings, what is thy name?","bio":"Please enter some fun words about yourself here!","phone":"123-456-7890","email":"abc@yahoo.ca","password":"$2b$10$dxk2jXiMpOlU5oXUjr.ujuz924RB2L6u4sAZ53lqqAw7BULWAfRl."},{"name":"Bryn Frayne","bio":"HEY this is my new bio check it out!","phone":"2502164842","email":"abc@yahoo.ca","password":"$2b$10$q73bYITe5oAh7zvYjdx8s.blC2FNceW9mkBqjPXvn0frjM.yBfm3G","id":"l1czib4a","image":""}]
+[
+    {
+        "name": "Greetings, what is thy name?",
+        "bio": "Please enter some fun words about yourself here!",
+        "phone": "123-456-7890",
+        "email": "fgdfg@dfsd.com",
+        "password": "$2b$10$ZnbrW2kKfxhngZMMV5EPceya6arGu0bFxI8n4IcA2O/Yo4WhZjdmW"
+    },
+    {
+        "name": "Greetings, what is thy name?",
+        "bio": "Please enter some fun words about yourself here!",
+        "phone": "123-456-7890",
+        "email": "brynfrayne@gmail.com",
+        "password": "$2b$10$yBxkyllsvxxhpSFc8iXL9OKXNHUjhaVj7B889vFA8QSoWsnBtgN5u"
+    },
+    {
+        "name": "Greetings, what is thy name?",
+        "bio": "Please enter some fun words about yourself here!",
+        "phone": "123-456-7890",
+        "email": "abc@yahoo.ca",
+        "password": "$2b$10$guru5WvAEs8.plLxc9nTvegbCLx18KCGwzlDDBWs.5M36hF5.kV6."
+    },
+    {
+        "name": "Greetings, what is thy name?",
+        "bio": "Please enter some fun words about yourself here!",
+        "phone": "123-456-7890",
+        "email": "abc@yahoo.ca",
+        "password": "$2b$10$YF/uynGOw45zT1TJJzPTfeV9sIdrn/Hc3VvEFavLuUjiyfHhfUgDa"
+    },
+    {
+        "name": "Greetings, what is thy name?",
+        "bio": "Please enter some fun words about yourself here!",
+        "phone": "123-456-7890",
+        "email": "abc@yahoo.ca",
+        "password": "$2b$10$XXv2BH4CzYzVER5MDperyO5xKKOA6Gw1CCM2SZTtWQh1tCQasz9DO"
+    },
+    {
+        "name": "Greetings, what is thy name?",
+        "bio": "Please enter some fun words about yourself here!",
+        "phone": "123-456-7890",
+        "email": "abc@yahoo.ca",
+        "password": "$2b$10$dxk2jXiMpOlU5oXUjr.ujuz924RB2L6u4sAZ53lqqAw7BULWAfRl."
+    },
+    {
+        "name": "Bryn Frayne",
+        "bio": "HEY this is my new bio check it out!",
+        "phone": "2502164842",
+        "email": "abc@yahoo.ca",
+        "password": "$2b$10$q73bYITe5oAh7zvYjdx8s.blC2FNceW9mkBqjPXvn0frjM.yBfm3G",
+        "id": "l1czib4a",
+        "image": ""
+    },
+    {
+        "name": "Greetings, what is thy name?",
+        "bio": "Please enter some fun words about yourself here!",
+        "phone": "123-456-7890",
+        "email": "abc@yahoo.ca",
+        "password": "$2b$10$06d8maPIyoSBo1F3Sj2p4ejAqDhOn8cM7ZGoRt8e0UakkhAeTX8W2",
+        "id": "l1eg2kbx"
+    }
+]
