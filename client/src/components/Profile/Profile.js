@@ -25,7 +25,6 @@ useEffect(() => {
   getUser()
 }, []);
 
-console.log(profile)
  if (!profile) {
    return <div className="loader"></div>
  } 

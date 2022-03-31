@@ -1,5 +1,5 @@
-import React, {useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useEffect, useState } from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
 import logo from '../../assets/devchallenges.svg';
 import darkLogo from '../../assets/devchallenges-light.svg';
 import googleLogo from '../../assets/Google.svg';
@@ -18,18 +18,30 @@ export default function Login({isDarkMode}) {
   const [registered, setRegistered] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
   const [nightMode, setNightMode] = useState();
+  const [id, setId] = useState();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-
+    event.preventDefault();
 
     axios.post('http://localhost:8000/login', {
       email: event.target.elements.email.value,
       password: event.target.elements.password.value
     })
+    .then((response)=>{
+      console.log(response.data)
+      setId(response.data.foundUser.id);
+    })
     .catch((error)=>{
       console.error(error)
   })
   }
+
+  useEffect(()=>{
+    if(id){
+      navigate(`/profile/${id}`);
+    }
+  })
 
   return (
       <>

@@ -3,6 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const cors = require('cors');
 const fs = require('fs');
+require("dotenv").config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const uniqid = require('uniqid');
@@ -87,15 +88,16 @@ app.post('/login', (req, res)=> {
     console.log(foundUser);
 
     const isPasswordCorrect = bcrypt.compareSync(password, foundUser.password);
-
+    
     if(!isPasswordCorrect) return res.status(400).send("Invalid password");
 
     const token = jwt.sign(
         {id: foundUser.id, email: foundUser.email},
-        process.env.TOKEN_SECRET,
+        process.env.JWT_KEY,
         { expiresIn: "24h"}
     );
-    res.json({ token });
+    console.log(token)
+    res.status(200).json({ token, foundUser });
 })
 
 app.listen(PORT, () => {
