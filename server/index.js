@@ -103,14 +103,26 @@ app.put('/editprofile', (req, res) => {
 // get user info
 app.get('/:id', (req, res) => {
     const id = req.params.id;
-    console.log(id)
-    // read json file 
-    const userData = readUsers();
-    // find the specific user im wanting 
-    const foundUser = userData.find((user) => id === user.id);
-    console.log(foundUser)
-    // send that to the client
-    res.status(200).json(foundUser);
+    
+    //If there is no auth header provided
+    if (!req.headers.authorization) {return res.status(401).send("Please login")};
+
+    // Parse the bearer token
+    const authToken = req.headers.authorization.split(" ")[1];
+    console.log(authToken);
+
+    //Verify the token
+    jwt.verify(authToken, process.env.JWT_KEY, (err, decoded) => {
+        if (err) {return res.status(401).send("Invalid auth token")};
+    
+        // read json file 
+        const userData = readUsers();
+        // find the specific user im wanting 
+        const foundUser = userData.find((user) => id === user.id);
+        console.log(foundUser)
+        // send that to the client
+        res.status(200).json(foundUser);
+})
 })
 
 // login user 

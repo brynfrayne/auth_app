@@ -15,7 +15,12 @@ const { id } = useParams();
 console.log(id)
 
 const getUser = () => { 
-  axios.get(`http://localhost:8000/${id}`)
+  const token = sessionStorage.getItem('token');
+  axios.get(`http://localhost:8000/${id}`,{
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  })
     .then((response)=> {
       console.log(response.data)
       setProfile(response.data)
