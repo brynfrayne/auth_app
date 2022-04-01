@@ -15,9 +15,6 @@ import axios from 'axios';
 
 export default function Login({isDarkMode}) {
 
-  const [registered, setRegistered] = useState();
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [nightMode, setNightMode] = useState();
   const [id, setId] = useState();
   const navigate = useNavigate();
 
@@ -43,9 +40,8 @@ export default function Login({isDarkMode}) {
     }
   })
 
-  return (
-      <>
-      {loggedIn ? <Profile/>:
+  return (   
+      
   <div className='login'>
       <div className='logo__wrapper'>
       {isDarkMode ? <img src={darkLogo} alt="" className='logo'/> : <img src={logo} alt="" className='logo'/>}
@@ -67,8 +63,7 @@ export default function Login({isDarkMode}) {
       </form>
       <p className='login__form-subtext'>Don't have an account yet? <NavLink to='/'>Register</NavLink></p>
   </div>
-}
-  </>
+  
 )
   
 }

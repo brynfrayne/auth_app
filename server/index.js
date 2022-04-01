@@ -24,6 +24,39 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
+// cloudinary config
+
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+cloudinary.config({ 
+    cloud_name: process.env.cloud_name, 
+    api_key: process.env.api_key, 
+    api_secret: process.env.api_secret 
+  });
+
+  const storage = new CloudinaryStorage({
+      cloudinary:cloudinary,
+      params: {
+          folder: "DEV",
+      },
+  });
+
+// multer config variables
+const multer = require('multer');
+
+const upload = multer({
+    // storage: multerConfig,
+    storage:storage
+    // fileFilter: isImage
+});
+const uploadImage = upload.single('photo');
+
+// upload new profile image 
+app.post("/images", uploadImage, (req, res) => {
+    res.json(req.file.path);
+})
+
 // create new user
 app.post('/signup', (req, res) => {
     console.log(req.body.id);

@@ -34,7 +34,7 @@ useEffect(() => {
       <div className='profile'>      
         <div className='profile__header'>
         {isDarkMode ? <img src={darkLogo} alt="" className='logo'/> : <img src={logo} alt="" className='logo'/>}
-          <img src={headshot} alt="" className='profile__thumbnail'/>
+          <img src={profile.image} alt="" className='profile__thumbnail'/>
         </div>
         <div className='profile__title-wrapper'>
           <h1>Personal info</h1>
@@ -59,7 +59,7 @@ useEffect(() => {
           </div>
           <div className='profile__info'>
             <p>PHOTO</p>
-            <img src={headshot} alt="" className='profile__headshot'/>
+            <img src={profile.image} alt="" className='profile__headshot'/>
           </div>
           <div className='profile__info'>
             <p>NAME</p>

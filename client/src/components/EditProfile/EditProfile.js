@@ -11,16 +11,20 @@ export default function EditProfile({isDarkMode}) {
   
   const [selectedFile, setSelectedFile] = useState();
   const [isSubmit, setIsSubmit] = useState(false);
+  const [imgName, setImgName] = useState();
+  const [uploading, setUploading] = useState(false);
+  const [uploaded, setUploaded] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
   const hiddenFileInput = useRef();
+  const location = useLocation()
 
   const handleSubmit = event => {
     event.preventDefault();
     setIsSubmit(true);
 
     axios.put("http://localhost:8000/editprofile", {
-      image: event.target.elements.photo.value,
+      image: imgName,
       name: event.target.elements.name.value,
       bio: event.target.elements.bio.value,
       phone: event.target.elements.phone.value,
@@ -30,26 +34,44 @@ export default function EditProfile({isDarkMode}) {
     })
     .then((response) => {
       console.log(response.data)
-
     })
-    
-
   }
-  const location = useLocation()
   
-  console.log(location.state.id)
-
   const handleChange = event => {
+    event.preventDefault();
     setSelectedFile(event.target.files[0])
+    console.log(selectedFile)
 };
 
 useEffect(()=>{
-  console.log(isSubmit)
+  if (selectedFile) {
+    const formData = new FormData();
+        formData.append('photo', selectedFile);
+
+        const config = {
+            headers: {
+                "content-type": "multipart/form-data" 
+            }
+        };
+        const url = "http://localhost:8000/images"
+        // const url = "https://agile-fortress-65595.herokuapp.com/images"
+
+        axios.post(url, formData, config, { withCredentials: true })
+        .then((result) => {
+          console.log(result)
+            setImgName(result.data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+  }
+
+
   if (isSubmit) {
       console.log(id)
       navigate(`/profile/${id}`);
   }
-});
+},[]);
 
   return (
     <div>
@@ -58,14 +80,19 @@ useEffect(()=>{
         <div className='edit-profile__card'>
           <h1 className='edit-profile__title'>Change Info</h1>
           <p>Changes will be reflected to every services</p>
-          <form action="" className='form' onSubmit={handleSubmit}>
-            <div className='edit-profile__headshot-wrapper'>
-              <button className='button--change-photo'>
-                <img src={headshot} alt="" className='edit-profile__headshot'/>
+          <div className='edit-profile__headshot-wrapper'>
+              <button 
+              onClick={() => hiddenFileInput.current.click()}
+              className='button--change-photo'
+              >
+                <img src={imgName ? imgName : headshot} alt="" className='edit-profile__headshot'/>
                 <img src={camera} alt="" className='edit-profile__camera-icon'/>
               </button>
               {/* <p className='edit-profile__subtext'> */}
-              <button className='button--change-photo'>
+              <button 
+              onClick={() => hiddenFileInput.current.click()}
+              className='button--change-photo'
+              >
                 CHANGE PHOTO
               </button>
               {/* </p> */}
@@ -81,6 +108,8 @@ useEffect(()=>{
                   className='simple-file-upload'
               />   
             </div>
+          <form action="" className='form' onSubmit={handleSubmit}>
+           
             <label htmlFor="name" className='form__label'>Name</label>
             <input id='name' type="text" placeholder='Enter your name..' className='form__input'/>
             <label htmlFor="Bio" className='form__label'>Bio</label>
