@@ -37,12 +37,9 @@ export default function SignUp({isDarkMode}) {
             id: id
             // image: ''
         })
-        
-        // .then(() => {
-        //     // navigate('/profile')
-            
-        //     // event.target.reset();
-        // })
+        .then((response) => {
+            sessionStorage.setItem('token', response.data.token);
+        })
         .catch((error)=>{
             console.error(error)
         })

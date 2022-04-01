@@ -22,7 +22,14 @@ const getUser = () => {
     })
   };
 useEffect(() => {
-  getUser()
+  const token = sessionStorage.getItem('token');
+  console.log(token)
+  if(!token) {
+    // setFailedAuth(true);
+    return;
+  }
+  getUser();
+
 }, []);
 
  if (!profile) {

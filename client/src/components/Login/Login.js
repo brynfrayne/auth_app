@@ -28,6 +28,7 @@ export default function Login({isDarkMode}) {
     .then((response)=>{
       console.log(response.data)
       setId(response.data.foundUser.id);
+      sessionStorage.setItem('token', response.data.token);
     })
     .catch((error)=>{
       console.error(error)

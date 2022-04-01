@@ -74,7 +74,12 @@ app.post('/signup', (req, res) => {
     users.push(newUser);
     fs.writeFileSync('./data/users.json', JSON.stringify(users));
 
-    res.status(201).json(newUser);
+    const token = jwt.sign(
+        {id: newUser.id, email: newUser.email},
+        process.env.JWT_KEY,
+        { expiresIn: "24h"}
+    );
+    res.status(200).json({ token,newUser });
 }) 
 
 // update user
