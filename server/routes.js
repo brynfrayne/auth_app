@@ -7,6 +7,7 @@ const fs = require('fs');
 const cookieSession = require('cookie-session');
 require("dotenv").config();
 require('./passport');
+const cloudinary = require('./cloudinary');
 
 const readUsers = () => {
     const data = fs.readFileSync('./data/users.json');
@@ -19,36 +20,8 @@ const findSpecificUser = (name) => {
     return userData.filter((user) => name === user.name);
 };
 
-// cloudinary config
-
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-
-cloudinary.config({ 
-    cloud_name: process.env.cloud_name, 
-    api_key: process.env.api_key, 
-    api_secret: process.env.api_secret 
-  });
-
-  const storage = new CloudinaryStorage({
-      cloudinary:cloudinary,
-      params: {
-          folder: "DEV",
-      },
-  });
-
-// multer config variables
-const multer = require('multer');
-
-const upload = multer({
-    // storage: multerConfig,
-    storage:storage
-    // fileFilter: isImage
-});
-const uploadImage = upload.single('photo');
-
 // upload new profile image 
-router.post("/images", uploadImage, (req, res) => {
+router.post("/images", cloudinary.uploadImage, (req, res) => {
     res.json(req.file.path);
 })
 

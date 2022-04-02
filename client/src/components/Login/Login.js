@@ -2,22 +2,19 @@ import React, {useEffect, useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import logo from '../../assets/devchallenges.svg';
 import darkLogo from '../../assets/devchallenges-light.svg';
-import googleLogo from '../../assets/Google.svg';
-import fbLogo from '../../assets/Facebook.svg';
 import twitterLogo from '../../assets/Twitter.svg';
 import githubLogo from '../../assets/Github.svg';
 import emailIcon from '../../assets/email.svg';
 import passwordIcon from '../../assets/lock.svg';
-import Profile from '../Profile/Profile';
 import './Login.scss';
 import axios from 'axios';
+import GoogleButton from '../GoogleButton/GoogleButton';
+import FacebookButton from '../FacebookButton/FacebookButton';
 
 
 export default function Login({isDarkMode}) {
-
   const [id, setId] = useState();
   const navigate = useNavigate();
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -56,12 +53,13 @@ export default function Login({isDarkMode}) {
           <button className='button'>Login</button>
           <p className='login__form-subtext'>or continue with these social profile</p>
           <div className='social-icons__wrapper'>
-              <img src={googleLogo} alt="" className='social-icons'/>
-              <img src={fbLogo} alt="" className='social-icons'/>
+              <GoogleButton/>
+              {/* <FacebookButton/> */}
               <img src={twitterLogo} alt="" className='social-icons'/>
               <img src={githubLogo} alt="" className='social-icons'/>
           </div>
       </form>
+      
       <p className='login__form-subtext'>Don't have an account yet? <NavLink to='/'>Register</NavLink></p>
   </div>
   
