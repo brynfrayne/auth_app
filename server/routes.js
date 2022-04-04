@@ -118,4 +118,7 @@ router.post('/login', (req, res)=> {
     res.status(200).json({ token, foundUser });
 })
 
+router.get('/auth/google', passport.authenticate(
+    'google', { scope: ['profile', 'email'] }))
+
 module.exports = router;

@@ -1,11 +1,15 @@
+import axios from 'axios';
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import googleLogo from '../../assets/Google.svg';
 
 export default function GoogleButton() {
     
-    const responseGoogle = (response) => {
-        console.log(response);
+    const responseGoogle = (googleData) => {
+        console.log(googleData);
+        axios.get('http://localhost:8000/auth/google', 
+          {token:googleData.tokenId}
+          )
       }
 
   return (

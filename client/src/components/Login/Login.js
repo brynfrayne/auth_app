@@ -10,6 +10,8 @@ import './Login.scss';
 import axios from 'axios';
 import GoogleButton from '../GoogleButton/GoogleButton';
 import FacebookButton from '../FacebookButton/FacebookButton';
+import googleLogo from '../../assets/Google.svg';
+
 
 
 export default function Login({isDarkMode}) {
@@ -37,6 +39,14 @@ export default function Login({isDarkMode}) {
       navigate(`/profile/${id}`);
     }
   })
+  const responseGoogle = (googleData) => {
+    window.open("http://localhost:8000/auth/google", "_self");
+
+    // axios.get('http://localhost:8000/auth/google')
+    //   .then(response => {
+    //     console.log(response.data)
+    //   })
+  }
 
   return (   
       
@@ -52,13 +62,17 @@ export default function Login({isDarkMode}) {
           <input id="password" type="password" className='login__form-input' placeholder='Password'/>
           <button className='button'>Login</button>
           <p className='login__form-subtext'>or continue with these social profile</p>
-          <div className='social-icons__wrapper'>
-              <GoogleButton/>
+          
+      </form>
+      <div className='social-icons__wrapper'>
+              {/* <GoogleButton/> */}
               {/* <FacebookButton/> */}
+              <button onClick={responseGoogle}>
+                <img src={googleLogo} alt="" className='social-icons'/>
+              </button>
               <img src={twitterLogo} alt="" className='social-icons'/>
               <img src={githubLogo} alt="" className='social-icons'/>
           </div>
-      </form>
       
       <p className='login__form-subtext'>Don't have an account yet? <NavLink to='/'>Register</NavLink></p>
   </div>
