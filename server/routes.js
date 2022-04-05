@@ -9,6 +9,8 @@ require("dotenv").config();
 require('./passport');
 const cloudinary = require('./cloudinary');
 
+const CLIENT_PROFILE_URL = 'http://localhost:3000';
+
 const readUsers = () => {
     const data = fs.readFileSync('./data/users.json');
     const parsedData = JSON.parse(data);
@@ -118,7 +120,17 @@ router.post('/login', (req, res)=> {
     res.status(200).json({ token, foundUser });
 })
 
+
+// Google passport oauth
 router.get('/auth/google', passport.authenticate(
-    'google', { scope: ['profile', 'email'] }))
+    'google', { scope: ['profile', 'email'] })
+    )
+
+router.get('/auth/google/redirect', 
+    passport.authenticate("google", {
+        successRedirect: CLIENT_PROFILE_URL,
+        failureRedirect: 'http://localhost:3000/login'
+    })    
+)
 
 module.exports = router;
