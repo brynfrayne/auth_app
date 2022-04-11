@@ -71,7 +71,7 @@ router.put('/editprofile', (req, res) => {
 })
 
 // get user info
-router.get('/:id', (req, res) => {
+router.get('/profile/:id', (req, res) => {
     const id = req.params.id;
     
     //If there is no auth header provided
@@ -93,6 +93,12 @@ router.get('/:id', (req, res) => {
         // send that to the client
         res.status(200).json(foundUser);
 })
+})
+router.get('/social', (req, res)=> {
+    if (req.user === undefined) return res.status(401).json({ message: 'Unauthorized' });
+
+  // If user is currently authenticated, send back user info
+  res.status(200).json(req.user);
 })
 
 // login user 
@@ -138,8 +144,9 @@ router.get('/auth/github', passport.authenticate('github'));
 
 router.get('/auth/github/redirect', 
     passport.authenticate('github', {failureRedirect: 'http://localhost:3000/login',}),
-    (_req, res) => {
-        res.redirect('http://localhost:3000')
+    (req, res) => {
+        console.log(req.user)
+        res.redirect('http://localhost:3000/success')
     }
 );
 

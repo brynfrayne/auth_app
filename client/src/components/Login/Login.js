@@ -37,7 +37,9 @@ export default function Login({isDarkMode}) {
 
   useEffect(()=>{
     if(id){
-      navigate(`/profile/${id}`);
+      // navigate(`/profile/${id}`);
+      navigate(`/profile`);
+
     }
   })
 

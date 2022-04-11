@@ -16,9 +16,10 @@ console.log(id)
 
 const getUser = () => { 
   const token = sessionStorage.getItem('token');
-  axios.get(`http://localhost:8000/${id}`,{
+  axios.get(`http://localhost:8000/profile/${id}`,{
     headers: {
-      Authorization: 'Bearer ' + token
+      // Authorization: 'Bearer ' + token
+      withCredentials: true
     }
   })
     .then((response)=> {

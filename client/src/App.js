@@ -7,6 +7,7 @@ import SignUp from './components/SignUp/SignUp';
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/EditProfile/EditProfile';
 import Footer from './components/Footer/Footer';
+import Success from './components/Success/Success';
 
 
 function App() {;
@@ -21,6 +22,7 @@ function App() {;
         <Route path='/login' element={<Login isDarkMode={isDarkMode}/>} />  
         <Route exact path='/profile/:id' element={<Profile isDarkMode={isDarkMode}/>} />  
         <Route path='/profile/edit/:id' element={<EditProfile isDarkMode={isDarkMode}/>} />  
+        <Route path='/success' element={<Success/>}/>
       </Routes>
         <Footer/>
         <DarkModeToggle
