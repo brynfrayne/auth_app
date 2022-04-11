@@ -3,8 +3,9 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const cors = require('cors');
 const cookieSession = require('cookie-session');
+const helmet = require('helmet');
+const expressSession = require('express-session');
 const passport = require('passport');
-
 // import router paths
 const routes = require('./routes');
 
@@ -19,9 +20,25 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // middleware
-app.use(cors());
+app.use(
+    cors({
+      origin: true,
+      credentials: true
+    })
+  );
+  app.use(
+    expressSession({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: true
+    })
+  );
 app.use(express.json());
 app.use(express.urlencoded());
+
+app.use(helmet());
+
+
 
 // paths, url endpoint routing
 app.use('/', routes);

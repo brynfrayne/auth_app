@@ -6,13 +6,13 @@ const GithubStrategy = require('passport-github2').Strategy;
 const passportGoogleConfig = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL
+    callbackURL: process.env.G00GLE_CALLBACK_URL
 };
 
 const passportGithubConfig = {
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL
+    callbackURL: process.env.GITHUB_CALLBACK_URL
 };
 
 passport.serializeUser(function(user, done){
@@ -25,11 +25,12 @@ passport.deserializeUser(function(user, done) {
 
 passport.use(new GoogleStrategy(passportGoogleConfig,
 function(
-    accessToken, 
-    refreshToken, 
+    _accessToken, 
+    _refreshToken, 
     profile, 
     cb
 ) {
+    crossOriginIsolated.log(profile);
     return cb(null,profile);
 }
 ));

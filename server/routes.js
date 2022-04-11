@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const cookieSession = require('cookie-session');
 require("dotenv").config();
-require('./passport');
+const passportStrategy = require('./passport');
 const cloudinary = require('./cloudinary');
 
 const CLIENT_PROFILE_URL = 'http://localhost:3000';
@@ -132,5 +132,15 @@ router.get('/auth/google/redirect',
         failureRedirect: 'http://localhost:3000/login'
     })    
 )
+
+// Github passport oauth
+router.get('/auth/github', passport.authenticate('github'));
+
+router.get('/auth/github/callback', 
+    passport.authenticate('github', {failureRedirect: 'http://localhost:3000/login',}),
+    (_req, res) => {
+        res.send('Youre in!')
+    }
+);
 
 module.exports = router;
