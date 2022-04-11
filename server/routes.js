@@ -4,6 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const knex = require('knex')(require('./knexfile.js').development);
 const cookieSession = require('cookie-session');
 require("dotenv").config();
 const passportStrategy = require('./passport');
@@ -54,21 +55,34 @@ router.post('/signup', (req, res) => {
 
 // update user
 router.put('/editprofile', (req, res) => {
-    // console.log(req.body)
-    const userData = readUsers();
-    const id = req.body.id;
-    const foundUser = userData.find((user) => id === user.id);
-    console.log(foundUser)
-    foundUser['image'] = req.body.image;
-    foundUser['name'] = req.body.name;
-    foundUser['bio'] = req.body.bio;
-    foundUser['phone'] = req.body.phone;
-    foundUser['email'] = req.body.email;
-    foundUser['password'] = bcrypt.hashSync(req.body.password, 10);
-    fs.writeFileSync('./data/users.json', JSON.stringify(userData));
-    res.status(200).json(foundUser);
-    console.log(foundUser)
-})
+    knex('users')
+        .where({ user_id:req.body.id})
+        .update({ 
+            name:req.body.name, 
+            bio:req.body.bio, 
+            phone:req.body.phone,
+            email:req.body.email,
+            password:req.body.email
+        })
+        // if (error) throw error;
+        return res.json({success:true});
+      });
+  
+    // // console.log(req.body)
+    // const userData = readUsers();
+    // const id = req.body.id;
+    // const foundUser = userData.find((user) => id === user.id);
+    // console.log(foundUser)
+    // foundUser['image'] = req.body.image;
+    // foundUser['name'] = req.body.name;
+    // foundUser['bio'] = req.body.bio;
+    // foundUser['phone'] = req.body.phone;
+    // foundUser['email'] = req.body.email;
+    // foundUser['password'] = bcrypt.hashSync(req.body.password, 10);
+    // fs.writeFileSync('./data/users.json', JSON.stringify(userData));
+    // res.status(200).json(foundUser);
+    // console.log(foundUser)
+// })
 
 // get user info
 router.get('/profile/:id', (req, res) => {
