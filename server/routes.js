@@ -136,10 +136,10 @@ router.get('/auth/google/redirect',
 // Github passport oauth
 router.get('/auth/github', passport.authenticate('github'));
 
-router.get('/auth/github/callback', 
+router.get('/auth/github/redirect', 
     passport.authenticate('github', {failureRedirect: 'http://localhost:3000/login',}),
     (_req, res) => {
-        res.send('Youre in!')
+        res.redirect('http://localhost:3000')
     }
 );
 
