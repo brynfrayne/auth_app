@@ -64,8 +64,11 @@ router.put('/editprofile', (req, res) => {
             email:req.body.email,
             password:req.body.email
         })
-        // if (error) throw error;
-        return res.json({success:true});
+        .then(_response=>{
+            return res.json({success:true});
+        });
+        // if (err) console.error();
+        
       });
   
     // // console.log(req.body)
@@ -139,6 +142,14 @@ router.post('/login', (req, res)=> {
     console.log(token)
     res.status(200).json({ token, foundUser });
 })
+// Create a logout endpoint
+router.get('/logout', (req, res) => {
+    // Passport adds the logout method to request, it will end user session
+    req.logout();
+  
+    // Redirect the user back to client-side application
+    res.redirect('http://localhost:3000/login');
+  });
 
 
 // Google passport oauth

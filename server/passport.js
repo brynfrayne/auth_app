@@ -87,9 +87,10 @@ passport.serializeUser((user, done) => {
         // Remember that knex will return an array of records, so we need to get a single record from it
         console.log('req.user:', user[0]);
         
-  
+        if (user[0]) return done(null, user[0]);
+        else { return done(null, false)};
         // The full user object will be attached to request object as `req.user`
-        done(null, user[0]);
+        
       })
       .catch(err => {
         console.log('Error finding user', err);

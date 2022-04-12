@@ -21,7 +21,8 @@ export default function EditProfile({isDarkMode}) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    setIsSubmit(true);
+    setIsSubmit(true, console.log(isSubmit));
+    console.log(isSubmit)
 
     axios.put("http://localhost:8000/editprofile", {
       image: imgName,
@@ -34,6 +35,10 @@ export default function EditProfile({isDarkMode}) {
     })
     .then((response) => {
       console.log(response.data)
+      console.log(isSubmit)
+    setIsSubmit(true, console.log(isSubmit));
+    navigate(`/success`);
+
     })
   }
   
@@ -64,14 +69,16 @@ useEffect(()=>{
         .catch((error) => {
             console.error('Error:', error);
         });
-  }
+  };
 
 
   if (isSubmit) {
-      console.log(id)
-      navigate(`/profile/${id}`);
+      console.log(isSubmit)
+      // navigate(`/profile/${id}`);
+      // navigate(`/success`);
+
   }
-},[]);
+},[isSubmit]);
 
   return (
     <div>
