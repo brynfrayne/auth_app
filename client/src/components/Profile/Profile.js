@@ -18,8 +18,8 @@ const getUser = () => {
   const token = sessionStorage.getItem('token');
   axios.get(`http://localhost:8000/profile/${id}`,{
     headers: {
-      // Authorization: 'Bearer ' + token
-      withCredentials: true
+      Authorization: 'Bearer ' + token
+      // withCredentials: true
     }
   })
     .then((response)=> {
@@ -61,8 +61,8 @@ useEffect(() => {
             </div>
             <div>
               {/* <button className='button--edit'> */}
-              <NavLink to={`/profile/edit/${profile.id}`}
-                state={{id:profile.id}} 
+              <NavLink to={`/profile/edit/${profile.user_id}`}
+                state={{id:profile.usesr_id}} 
                 className='button--edit'
                 >
                 Edit

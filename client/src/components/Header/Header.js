@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/devchallenges.svg';
 import darkLogo from '../../assets/devchallenges-light.svg';
 import arrow from '../../assets/arrow.svg';
@@ -6,8 +7,16 @@ import profile from '../../assets/profile_icon.svg';
 import group from '../../assets/group_icon.svg';
 import logout from '../../assets/logout_icon.svg';
 import './Header.scss';
+import axios from 'axios';
 
 export default function Header({isDarkMode}) {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        axios.get('http://localhost:8000/logout')
+        .then(response=>{
+            navigate('/login');
+        })
+    }
   return (
     <div className='header'>
         {isDarkMode ? <img src={darkLogo} alt="" className='logo'/> : <img src={logo} alt="" className='logo'/>}
@@ -24,8 +33,10 @@ export default function Header({isDarkMode}) {
                 </div>
                 <div className='dropdown__content-divider'></div>
                 <div className='dropdown__content-wrapper'>
-                    <img src={logout} alt="" />
-                    <p>Logout</p>
+                    <button onClick={handleClick}>
+                        <img src={logout} alt="" />
+                        <p>Logout</p>
+                    </button>
                 </div>
             </div>
         </div>

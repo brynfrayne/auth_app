@@ -38,19 +38,31 @@ router.post('/signup', (req, res) => {
         phone: req.body.phone,
         email: req.body.email,
         password: hashedPassword,
-        id:req.body.id
-    }
-    console.log(newUser)
-    const users = readUsers();
-    users.push(newUser);
-    fs.writeFileSync('./data/users.json', JSON.stringify(users));
-
+        user_id:req.body.id
+    };
     const token = jwt.sign(
         {id: newUser.id, email: newUser.email},
         process.env.JWT_KEY,
         { expiresIn: "24h"}
     );
-    res.status(200).json({ token,newUser });
+    knex('users')
+        .insert({ 
+            name: req.body.name,
+            bio: req.body.bio,
+            phone: req.body.phone,
+            email: req.body.email,
+            password: hashedPassword,
+            user_id:req.body.id })
+        .then(_response=>{
+            return res.status(200).json({ token });
+        });
+    // console.log(newUser)
+    // const users = readUsers();
+    // users.push(newUser);
+    // fs.writeFileSync('./data/users.json', JSON.stringify(users));
+
+    
+    
 }) 
 
 // update user
@@ -90,7 +102,7 @@ router.put('/editprofile', (req, res) => {
 // get user info
 router.get('/profile/:id', (req, res) => {
     const id = req.params.id;
-    
+    console.log(`This is the headers ${req.headers.authorization}`)
     //If there is no auth header provided
     if (!req.headers.authorization) {return res.status(401).send("Please login")};
 
@@ -101,14 +113,18 @@ router.get('/profile/:id', (req, res) => {
     //Verify the token
     jwt.verify(authToken, process.env.JWT_KEY, (err, decoded) => {
         if (err) {return res.status(401).send("Invalid auth token")};
-    
-        // read json file 
-        const userData = readUsers();
-        // find the specific user im wanting 
-        const foundUser = userData.find((user) => id === user.id);
-        console.log(foundUser)
-        // send that to the client
-        res.status(200).json(foundUser);
+        knex('users')
+            .where({ user_id: id })
+            .then(response=>{
+                res.status(200).json(response)
+            })
+        // // read json file 
+        // const userData = readUsers();
+        // // find the specific user im wanting 
+        // const foundUser = userData.find((user) => id === user.id);
+        // console.log(foundUser)
+        // // send that to the client
+        // res.status(200).json(foundUser);
 })
 })
 router.get('/social', (req, res)=> {
@@ -145,10 +161,9 @@ router.post('/login', (req, res)=> {
 // Create a logout endpoint
 router.get('/logout', (req, res) => {
     // Passport adds the logout method to request, it will end user session
-    req.logout();
-  
+    req.logout();  
     // Redirect the user back to client-side application
-    res.redirect('http://localhost:3000/login');
+    res.redirect('http://localhost:3000');
   });
 
 

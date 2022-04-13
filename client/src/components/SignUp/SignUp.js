@@ -39,6 +39,7 @@ export default function SignUp({isDarkMode}) {
         })
         .then((response) => {
             sessionStorage.setItem('token', response.data.token);
+            console.log(response)
         })
         .catch((error)=>{
             console.error(error)
@@ -46,9 +47,7 @@ export default function SignUp({isDarkMode}) {
     };
 
     useEffect(()=>{
-        console.log(isSubmit)
         if (isSubmit) {
-            console.log(id)
             navigate(`/profile/${id}`);
         }
     });
