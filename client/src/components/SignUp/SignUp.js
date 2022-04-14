@@ -34,8 +34,8 @@ export default function SignUp({isDarkMode}) {
             name: "Greetings, what is thy name?",
             bio: "Please enter some fun words about yourself here!",
             phone: '123-456-7890',
-            id: id
-            // image: ''
+            id: id,
+            avatar_url: 'https://avatars.githubusercontent.com/u/91647976?v=4'
         })
         .then((response) => {
             sessionStorage.setItem('token', response.data.token);

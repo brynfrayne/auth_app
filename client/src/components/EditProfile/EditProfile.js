@@ -22,16 +22,16 @@ export default function EditProfile({isDarkMode}) {
   const handleSubmit = event => {
     event.preventDefault();
     setIsSubmit(true, console.log(isSubmit));
-    console.log(isSubmit)
+    console.log(id)
 
     axios.put("http://localhost:8000/editprofile", {
-      image: imgName,
+      avatar_url: imgName || 'https://avatars.githubusercontent.com/u/91647976?v=4',
       name: event.target.elements.name.value,
       bio: event.target.elements.bio.value,
       phone: event.target.elements.phone.value,
       email: event.target.elements.email.value,
       password: event.target.elements.password.value,
-      id: location.state.id
+      user_id: id
     })
     .then((response) => {
       console.log(response.data)

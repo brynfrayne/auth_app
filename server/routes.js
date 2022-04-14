@@ -30,7 +30,7 @@ router.post("/images", cloudinary.uploadImage, (req, res) => {
 
 // create new user
 router.post('/signup', (req, res) => {
-    console.log(req.body.id);
+    console.log(req.body);
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     const newUser = {
         name: req.body.name,
@@ -52,7 +52,10 @@ router.post('/signup', (req, res) => {
             phone: req.body.phone,
             email: req.body.email,
             password: hashedPassword,
-            user_id:req.body.id })
+            user_id:req.body.id, 
+            avatar_url: req.body.avatar_url
+        })
+            
         .then(_response=>{
             return res.status(200).json({ token });
         });
@@ -67,14 +70,17 @@ router.post('/signup', (req, res) => {
 
 // update user
 router.put('/editprofile', (req, res) => {
+    console.log(req.body)
     knex('users')
-        .where({ user_id:req.body.id})
+        .where({ user_id:req.body.user_id})
         .update({ 
+            avatar_url: req.body.avatar_url,
             name:req.body.name, 
             bio:req.body.bio, 
             phone:req.body.phone,
             email:req.body.email,
-            password:req.body.email
+            password:req.body.email,
+            user_id: req.body.user_id
         })
         .then(_response=>{
             return res.json({success:true});
@@ -102,7 +108,7 @@ router.put('/editprofile', (req, res) => {
 // get user info
 router.get('/profile/:id', (req, res) => {
     const id = req.params.id;
-    console.log(`This is the headers ${req.headers.authorization}`)
+    
     //If there is no auth header provided
     if (!req.headers.authorization) {return res.status(401).send("Please login")};
 

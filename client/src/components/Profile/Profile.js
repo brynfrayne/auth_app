@@ -16,6 +16,7 @@ console.log(id)
 
 const getUser = () => { 
   const token = sessionStorage.getItem('token');
+  console.log(id)
   axios.get(`http://localhost:8000/profile/${id}`,{
     headers: {
       Authorization: 'Bearer ' + token
@@ -41,13 +42,14 @@ useEffect(() => {
  if (!profile) {
    return <div className="loader"></div>
  } 
-   return (
+ console.log(profile)
+ return (
     <div>
       <Header isDarkMode={isDarkMode} />
       <div className='profile'>      
         <div className='profile__header'>
         {isDarkMode ? <img src={darkLogo} alt="" className='logo'/> : <img src={logo} alt="" className='logo'/>}
-          <img src={profile.image} alt="" className='profile__thumbnail'/>
+          <img src={profile[0].avatar_url} alt="" className='profile__thumbnail'/>
         </div>
         <div className='profile__title-wrapper'>
           <h1>Personal info</h1>
@@ -61,8 +63,8 @@ useEffect(() => {
             </div>
             <div>
               {/* <button className='button--edit'> */}
-              <NavLink to={`/profile/edit/${profile.user_id}`}
-                state={{id:profile.usesr_id}} 
+              <NavLink to={`/profile/edit/${profile[0].user_id}`}
+                state={{id:profile[0].user_id}} 
                 className='button--edit'
                 >
                 Edit
@@ -72,19 +74,19 @@ useEffect(() => {
           </div>
           <div className='profile__info'>
             <p>PHOTO</p>
-            <img src={profile.image} alt="" className='profile__headshot'/>
+            <img src={profile[0].avatar_url} alt="" className='profile__headshot'/>
           </div>
           <div className='profile__info'>
             <p>NAME</p>
-            <p>{profile.name}</p>
+            <p>{profile[0].name}</p>
           </div>
           <div className='profile__info'>
             <p>BIO</p>
-            <p>{profile.bio}</p>
+            <p>{profile[0].bio}</p>
           </div>
           <div className='profile__info'>
             <p>EMAIL</p>
-            <p>{profile.email}</p>
+            <p>{profile[0].email}</p>
           </div>
           <div className='profile__info'>
             <p>PASSWORD</p>
