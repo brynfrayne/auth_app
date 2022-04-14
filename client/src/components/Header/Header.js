@@ -33,7 +33,7 @@ export default function Header({isDarkMode}) {
                 </div>
                 <div className='dropdown__content-divider'></div>
                 <div className='dropdown__content-wrapper'>
-                    <button onClick={handleClick}>
+                    <button onClick={handleClick} className='dropdown__button'>
                         <img src={logout} alt="" />
                         <p>Logout</p>
                     </button>
