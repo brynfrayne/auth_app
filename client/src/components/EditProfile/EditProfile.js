@@ -70,15 +70,7 @@ useEffect(()=>{
             console.error('Error:', error);
         });
   };
-
-
-  if (isSubmit) {
-      console.log(isSubmit)
-      // navigate(`/profile/${id}`);
-      // navigate(`/success`);
-
-  }
-},[isSubmit]);
+},[selectedFile]);
 
   return (
     <div>
