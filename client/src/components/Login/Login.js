@@ -27,7 +27,7 @@ export default function Login({isDarkMode}) {
     })
     .then((response)=>{
       console.log(response.data)
-      setId(response.data.foundUser.id);
+      setId(response.data.user.user_id);
       sessionStorage.setItem('token', response.data.token);
     })
     .catch((error)=>{
@@ -37,8 +37,8 @@ export default function Login({isDarkMode}) {
 
   useEffect(()=>{
     if(id){
-      // navigate(`/profile/${id}`);
-      navigate(`/profile`);
+      navigate(`/profile/${id}`);
+      // navigate(`/profile`);
 
     }
   })

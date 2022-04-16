@@ -37,7 +37,7 @@ export default function EditProfile({isDarkMode}) {
       console.log(response.data)
       console.log(isSubmit)
     setIsSubmit(true, console.log(isSubmit));
-    navigate(`/success`);
+    navigate(`/profile/${id}`);
 
     })
   }

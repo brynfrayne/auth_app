@@ -9,6 +9,7 @@ const cookieSession = require('cookie-session');
 require("dotenv").config();
 const passportStrategy = require('./passport');
 const cloudinary = require('./cloudinary');
+const { response } = require('express');
 
 const CLIENT_PROFILE_URL = 'http://localhost:3000';
 
@@ -148,21 +149,51 @@ router.post('/login', (req, res)=> {
     if(!email || !password) {
         return res.status(400).send("Please enter the required fields.");
     }
-    const userData = readUsers();
-    const foundUser = userData.find((user) => email === user.email);
-    console.log(foundUser);
-
-    const isPasswordCorrect = bcrypt.compareSync(password, foundUser.password);
     
-    if(!isPasswordCorrect) return res.status(400).send("Invalid password");
+    knex('users').where({ email })
+        .first()
+        .then(user =>{
+            if(!user){
+                res.status(401).json({
+                    error:'No user with that email'
+                })
+            }else{
+                console.log("here",user)
+                return bcrypt
+                .compare(req.body.password, user.password)
+                .then(isAuthenticated => {
+                    // if(!isAuthenticated){
+                    //     res.status(401).json({
+                    //         error:'Unauthorized Access!'
+                    //     })
+                    // }else{
+                        return jwt.sign(
+                            {email:user.email, id: user.user_id}, 
+                            process.env.JWT_KEY, 
+                            (error, token) => {
+                            res.status(200).json({token, user})
+                        } )
+                    }
+                // }
+                )
+            }
+        })
+    
+    // const userData = readUsers();
+    // const foundUser = userData.find((user) => email === user.email);
+    // console.log(foundUser);
 
-    const token = jwt.sign(
-        {id: foundUser.id, email: foundUser.email},
-        process.env.JWT_KEY,
-        { expiresIn: "24h"}
-    );
-    console.log(token)
-    res.status(200).json({ token, foundUser });
+    // const isPasswordCorrect = bcrypt.compareSync(password, foundUser.password);
+    
+    // if(!isPasswordCorrect) return res.status(400).send("Invalid password");
+
+    // const token = jwt.sign(
+    //     {id: foundUser.id, email: foundUser.email},
+    //     process.env.JWT_KEY,
+    //     { expiresIn: "24h"}
+    // );
+    // console.log(token)
+    // res.status(200).json({ token, foundUser });
 })
 // Create a logout endpoint
 router.get('/logout', (req, res) => {
