@@ -7,7 +7,7 @@ const GithubStrategy = require('passport-github2').Strategy;
 const passportGoogleConfig = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.G00GLE_CALLBACK_URL
+    callbackURL: 'http://localhost:8000/auth/google/redirect'
 };
 
 const passportGithubConfig = {
@@ -16,16 +16,41 @@ const passportGithubConfig = {
     callbackURL: process.env.GITHUB_CALLBACK_URL
 };
 
-passport.use(new GoogleStrategy(passportGoogleConfig,
-function(
-    _accessToken, 
-    _refreshToken, 
-    profile, 
-    done
+passport.use(new GoogleStrategy(passportGoogleConfig, function (
+  _accessToken,
+  _refreshToken,
+  profile,
+  done
 ) {
-    crossOriginIsolated.log(profile);
-    return done(null,profile);
-}
+  // For our implementation we don't need access or refresh tokens.
+    // Profile parameter will be the profile object we get back from GitHub
+    console.log('Google profile:', profile);
+
+    // First let's check if we already have this user in our DB
+    knex('users')
+      .select('id')
+      .where({ user_id: profile.id })
+      .then(user => {
+        if (user.length) {
+          // If user is found, pass the user object to serialize function
+          done(null, user[0]);
+        } else {
+          // If user isn't found, we create a record
+          knex('users')
+            .insert({
+              user_id: profile.id,
+              avatar_url: profile._json.picture,
+              name: profile.displayName
+            })
+            .then(userId => {
+              // Pass the user object to serialize function
+              done(null, { id: userId[0] });
+            })
+            .catch(err => {
+              console.log('Error creating a user', err);
+            });
+}}
+)}
 ));
 
 passport.use(new GithubStrategy(passportGithubConfig, function (

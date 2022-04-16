@@ -45,7 +45,7 @@ if (!profile) {
             </div>
             <div>
               {/* <button className='button--edit'> */}
-              <NavLink to={`/profile/edit/${profile.id}`}
+              <NavLink to={`/profile/edit/${profile.user_id}`}
                 state={{id:profile.user_id}} 
                 className='button--edit'
                 >

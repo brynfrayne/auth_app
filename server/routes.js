@@ -205,15 +205,14 @@ router.get('/logout', (req, res) => {
 
 
 // Google passport oauth
-router.get('/auth/google', passport.authenticate(
-    'google', { scope: ['profile', 'email'] })
-    )
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
 
 router.get('/auth/google/redirect', 
-    passport.authenticate("google", {
-        successRedirect: CLIENT_PROFILE_URL,
-        failureRedirect: 'http://localhost:3000/login'
-    })    
+    passport.authenticate("google", {failureRedirect: 'http://localhost:3000/login',}),
+    (req, res) => {
+        console.log(req.user)
+        res.redirect('http://localhost:3000/success')
+    }
 )
 
 // Github passport oauth
