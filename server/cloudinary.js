@@ -26,6 +26,7 @@ const upload = multer({
 });
 const uploadImage = upload.single('photo');
 
+
 module.exports = {
     cloudinary, CloudinaryStorage, storage, cloudinaryConfig, upload, uploadImage
 }
