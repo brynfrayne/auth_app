@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../assets/devchallenges.svg';
 import darkLogo from '../../assets/devchallenges-light.svg';
-import headshot from '../../assets/headshot.jpg';
 import '../Profile/Profile.scss';
 import Header from '../Header/Header';
 
@@ -44,14 +43,12 @@ if (!profile) {
               <p className='profile__subtext'>Some info may be visible to other people</p>
             </div>
             <div>
-              {/* <button className='button--edit'> */}
               <NavLink to={`/profile/edit/${profile.user_id}`}
                 state={{id:profile.user_id}} 
                 className='button--edit'
                 >
                 Edit
               </NavLink>
-              {/* </button> */}
             </div>
           </div>
           <div className='profile__info'>
