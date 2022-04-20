@@ -5,8 +5,8 @@ module.exports = {
     client: 'mysql',
     connection: {
       host: '127.0.0.1',
-      user: 'root',
-      password: 'rootroot',
+      user: process.env.db_user,
+      password: process.env.db_password,
       database: 'auth_app',
       charset: 'utf8',
     },
@@ -14,10 +14,10 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
-      host: 'us-cdbr-east-05.cleardb.net',
-      user: 'be12b40c26e091',
-      password: '11ce8dd3',
-      database: 'heroku_8851603c56e840a'
+      host: process.env.clearDB_host,
+      user: process.env.clearDB_user,
+      password: process.env.clearDB_password,
+      database: process.env.clearDB_database
     }
   }
 };

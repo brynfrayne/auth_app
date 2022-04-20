@@ -4,14 +4,12 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
-const knex = require('knex')(require('./knexfile.js').development);
-const cookieSession = require('cookie-session');
+// const knex = require('knex')(require('./knexfile.js').development);
+const knex = require('knex');
+const PORT = require('./index.js');
+const db = PORT === process.env.PORT ? knex(require('./knexfile.js').production) : knex(require('./knexfile.js').development);
 require("dotenv").config();
-const passportStrategy = require('./passport');
 const cloudinary = require('./cloudinary');
-const { response } = require('express');
-
-const CLIENT_PROFILE_URL = 'http://localhost:3000';
 
 const readUsers = () => {
     const data = fs.readFileSync('./data/users.json');
@@ -46,7 +44,7 @@ router.post('/signup', (req, res) => {
         process.env.JWT_KEY,
         { expiresIn: "24h"}
     );
-    knex('users')
+    db('users')
         .insert({ 
             name: req.body.name,
             bio: req.body.bio,
@@ -72,7 +70,7 @@ router.post('/signup', (req, res) => {
 // update user
 router.put('/editprofile', (req, res) => {
     console.log(req.body)
-    knex('users')
+    db('users')
         .where({ user_id:req.body.user_id})
         .update({ 
             avatar_url: req.body.avatar_url,
@@ -120,7 +118,7 @@ router.get('/profile/:id', (req, res) => {
     //Verify the token
     jwt.verify(authToken, process.env.JWT_KEY, (err, decoded) => {
         if (err) {return res.status(401).send("Invalid auth token")};
-        knex('users')
+        db('users')
             .where({ user_id: id })
             .then(response=>{
                 res.status(200).json(response)
@@ -150,7 +148,7 @@ router.post('/login', (req, res)=> {
         return res.status(400).send("Please enter the required fields.");
     }
     
-    knex('users').where({ email })
+    db('users').where({ email })
         .first()
         .then(user =>{
             if(!user){
