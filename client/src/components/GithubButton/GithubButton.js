@@ -4,7 +4,7 @@ import GithubLogo from '../../assets/Github.svg';
 export default function GithubButton() {
     
     const responseGithub = () => {
-      window.open("http://localhost:8000/auth/Github", "_self");
+      window.open("https://floating-caverns-12877.herokuapp.com/auth/Github", "_self");
       }
 
   return (

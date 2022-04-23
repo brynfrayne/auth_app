@@ -5,7 +5,7 @@ import fbLogo from '../../assets/Facebook.svg';
 export default function FacebookButton() {
     
     const responseFacebook = () => {
-      window.open("http://localhost:8000/auth/facebook", "_self");
+      window.open("https://floating-caverns-12877.herokuapp.com/auth/facebook", "_self");
       }
 
   return (

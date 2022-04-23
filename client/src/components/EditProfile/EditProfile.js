@@ -58,8 +58,8 @@ useEffect(()=>{
                 "content-type": "multipart/form-data" 
             }
         };
-        const url = "http://localhost:8000/images"
-        // const url = "https://agile-fortress-65595.herokuapp.com/images"
+        // const url = "http://localhost:8000/images"
+        const url = "https://floating-caverns-12877.herokuapp.com/images"
 
         axios.post(url, formData, config, { withCredentials: true })
         .then((result) => {

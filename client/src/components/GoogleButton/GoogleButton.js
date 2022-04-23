@@ -4,7 +4,7 @@ import googleLogo from '../../assets/Google.svg';
 export default function GoogleButton() {
     
     const responseGoogle = () => {
-      window.open("http://localhost:8000/auth/google", "_self");
+      window.open("https://floating-caverns-12877.herokuapp.com/auth/google", "_self");
       }
 
   return (

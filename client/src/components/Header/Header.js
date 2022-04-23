@@ -12,7 +12,7 @@ import axios from 'axios';
 export default function Header({isDarkMode}) {
     const navigate = useNavigate();
     const handleClick = () => {
-        axios.get('http://localhost:8000/logout')
+        axios.get('https://floating-caverns-12877.herokuapp.com/logout')
         .then(response=>{
             navigate('/login');
         })

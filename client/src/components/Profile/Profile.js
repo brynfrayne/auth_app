@@ -17,7 +17,7 @@ console.log(id)
 const getUser = () => { 
   const token = sessionStorage.getItem('token');
   console.log(id)
-  axios.get(`http://localhost:8000/profile/${id}`,{
+  axios.get(`https://floating-caverns-12877.herokuapp.com/profile/${id}`,{
     headers: {
       Authorization: 'Bearer ' + token
       // withCredentials: true

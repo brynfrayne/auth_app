@@ -7,7 +7,7 @@ const fs = require('fs');
 // const knex = require('knex')(require('./knexfile.js').development);
 const knex = require('knex');
 const PORT = require('./index.js');
-const db = PORT === process.env.PORT ? knex(require('./knexfile.js').production) : knex(require('./knexfile.js').development);
+const db = PORT === 8000 ? knex(require('./knexfile.js').development) : knex(require('./knexfile.js').production);
 require("dotenv").config();
 const cloudinary = require('./cloudinary');
 

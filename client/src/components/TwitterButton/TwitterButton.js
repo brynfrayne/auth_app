@@ -4,7 +4,7 @@ import twitterLogo from '../../assets/Twitter.svg';
 export default function TwitterButton() {
     
     const responseTwitter = () => {
-      window.open("http://localhost:8000/auth/twitter", "_self");
+      window.open("https://floating-caverns-12877.herokuapp.com/auth/twitter", "_self");
       }
 
   return (

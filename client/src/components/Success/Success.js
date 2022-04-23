@@ -10,7 +10,7 @@ export default function Success({isDarkMode}) {
 const [profile, setProfile] = useState();
 
 const getUser = () => {
-    axios.get('http://localhost:8000/social', { withCredentials: true })
+    axios.get('https://floating-caverns-12877.herokuapp.com/social', { withCredentials: true })
         .then(res => {
             console.log(res.data)
             setProfile(res.data)

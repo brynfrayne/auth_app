@@ -21,7 +21,7 @@ export default function Login({isDarkMode}) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:8000/login', {
+    axios.post('https://floating-caverns-12877.herokuapp.com/login', {
       email: event.target.elements.email.value,
       password: event.target.elements.password.value
     })

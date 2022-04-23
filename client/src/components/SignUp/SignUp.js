@@ -28,7 +28,7 @@ export default function SignUp({isDarkMode}) {
         setEmail(event.target.elements.email.value);
         
         
-        axios.post("http://localhost:8000/signup", {
+        axios.post("https://floating-caverns-12877.herokuapp.com/signup", {
             email: event.target.elements.email.value,
             password: event.target.elements.password.value,
             name: "Greetings, what is thy name?",
